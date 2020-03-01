@@ -8,6 +8,8 @@
 
 以 uboot-2012.04.01为例。
 
+>arm-linux-gcc 版本为4.4.3(安装教程：[S3C2440-裸机篇-02 | 安装和使用arm-linux-gcc交叉编译工具链](https://blog.csdn.net/Mculover666/article/details/88044790))。 
+
 解压源码：
 ```bash
 tar -jxf u-boot-2012.04.01.tar.bz2
