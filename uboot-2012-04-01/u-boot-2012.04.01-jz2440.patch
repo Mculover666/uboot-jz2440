@@ -1,6 +1,6 @@
 diff -urN u-boot-2012.04.01/arch/arm/cpu/arm920t/start.S u-boot-2012.04.01-jz2440/arch/arm/cpu/arm920t/start.S
 --- u-boot-2012.04.01/arch/arm/cpu/arm920t/start.S	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/arch/arm/cpu/arm920t/start.S	2020-02-25 13:47:07.051047329 +0800
++++ u-boot-2012.04.01-jz2440/arch/arm/cpu/arm920t/start.S	2020-03-04 08:12:08.078088394 +0800
 @@ -167,11 +167,20 @@
  	str	r1, [r0]
  # endif
@@ -27,7 +27,7 @@ diff -urN u-boot-2012.04.01/arch/arm/cpu/arm920t/start.S u-boot-2012.04.01-jz244
  	/*
 diff -urN u-boot-2012.04.01/arch/arm/lib/board.c u-boot-2012.04.01-jz2440/arch/arm/lib/board.c
 --- u-boot-2012.04.01/arch/arm/lib/board.c	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/arch/arm/lib/board.c	2020-02-29 14:17:32.672723172 +0800
++++ u-boot-2012.04.01-jz2440/arch/arm/lib/board.c	2020-03-04 08:12:08.078088394 +0800
 @@ -647,6 +647,9 @@
  	}
  #endif
@@ -40,7 +40,7 @@ diff -urN u-boot-2012.04.01/arch/arm/lib/board.c u-boot-2012.04.01-jz2440/arch/a
  		main_loop();
 diff -urN u-boot-2012.04.01/board/samsung/smdk2440/lowlevel_init.S u-boot-2012.04.01-jz2440/board/samsung/smdk2440/lowlevel_init.S
 --- u-boot-2012.04.01/board/samsung/smdk2440/lowlevel_init.S	1970-01-01 08:00:00.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/lowlevel_init.S	2020-02-28 08:32:06.090898471 +0800
++++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/lowlevel_init.S	2020-03-04 08:12:08.078088394 +0800
 @@ -0,0 +1,178 @@
 +/*
 + * Memory Setup stuff - taken from blob memsetup.S
@@ -222,7 +222,7 @@ diff -urN u-boot-2012.04.01/board/samsung/smdk2440/lowlevel_init.S u-boot-2012.0
 +    .word 0x30
 diff -urN u-boot-2012.04.01/board/samsung/smdk2440/Makefile u-boot-2012.04.01-jz2440/board/samsung/smdk2440/Makefile
 --- u-boot-2012.04.01/board/samsung/smdk2440/Makefile	1970-01-01 08:00:00.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/Makefile	2020-02-28 08:49:32.567167912 +0800
++++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/Makefile	2020-03-04 08:12:08.078088394 +0800
 @@ -0,0 +1,45 @@
 +#
 +# (C) Copyright 2000-2006
@@ -271,7 +271,7 @@ diff -urN u-boot-2012.04.01/board/samsung/smdk2440/Makefile u-boot-2012.04.01-jz
 +#########################################################################
 diff -urN u-boot-2012.04.01/board/samsung/smdk2440/smdk2440.c u-boot-2012.04.01-jz2440/board/samsung/smdk2440/smdk2440.c
 --- u-boot-2012.04.01/board/samsung/smdk2440/smdk2440.c	1970-01-01 08:00:00.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/smdk2440.c	2020-02-28 08:47:48.591000000 +0800
++++ u-boot-2012.04.01-jz2440/board/samsung/smdk2440/smdk2440.c	2020-03-04 15:36:23.922030019 +0800
 @@ -0,0 +1,163 @@
 +/*
 + * (C) Copyright 2002
@@ -391,8 +391,8 @@ diff -urN u-boot-2012.04.01/board/samsung/smdk2440/smdk2440.c u-boot-2012.04.01-
 +
 +int board_init(void)
 +{
-+	/* arch number of SMDK2410-Board */
-+	gd->bd->bi_arch_number = MACH_TYPE_SMDK2410;
++	/* arch number of SMDK2440-Board */
++	gd->bd->bi_arch_number = MACH_TYPE_S3C2440;
 +
 +	/* adress of boot parameters */
 +	gd->bd->bi_boot_params = 0x30000100;
@@ -438,7 +438,7 @@ diff -urN u-boot-2012.04.01/board/samsung/smdk2440/smdk2440.c u-boot-2012.04.01-
 +}
 diff -urN u-boot-2012.04.01/boards.cfg u-boot-2012.04.01-jz2440/boards.cfg
 --- u-boot-2012.04.01/boards.cfg	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/boards.cfg	2020-02-24 20:48:12.987984189 +0800
++++ u-boot-2012.04.01-jz2440/boards.cfg	2020-03-04 08:12:08.078088394 +0800
 @@ -63,6 +63,7 @@
  cm41xx                       arm         arm920t     -                   -              ks8695
  VCMA9                        arm         arm920t     vcma9               mpl            s3c24x0
@@ -449,7 +449,7 @@ diff -urN u-boot-2012.04.01/boards.cfg u-boot-2012.04.01-jz2440/boards.cfg
  integratorcp_cm926ejs        arm         arm926ejs   integrator          armltd         -           integratorcp:CM924EJ_S
 diff -urN u-boot-2012.04.01/common/env_nand.c u-boot-2012.04.01-jz2440/common/env_nand.c
 --- u-boot-2012.04.01/common/env_nand.c	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/common/env_nand.c	2020-02-29 15:41:25.912246995 +0800
++++ u-boot-2012.04.01-jz2440/common/env_nand.c	2020-03-04 08:12:08.078088394 +0800
 @@ -259,7 +259,7 @@
  	puts("done\n");
  	return ret;
@@ -461,7 +461,7 @@ diff -urN u-boot-2012.04.01/common/env_nand.c u-boot-2012.04.01-jz2440/common/en
  int readenv(size_t offset, u_char *buf)
 diff -urN u-boot-2012.04.01/drivers/mtd/cfi_flash.c u-boot-2012.04.01-jz2440/drivers/mtd/cfi_flash.c
 --- u-boot-2012.04.01/drivers/mtd/cfi_flash.c	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/drivers/mtd/cfi_flash.c	2020-02-26 11:28:58.336220164 +0800
++++ u-boot-2012.04.01-jz2440/drivers/mtd/cfi_flash.c	2020-03-04 08:12:08.078088394 +0800
 @@ -32,7 +32,10 @@
   */
  
@@ -493,7 +493,7 @@ diff -urN u-boot-2012.04.01/drivers/mtd/cfi_flash.c u-boot-2012.04.01-jz2440/dri
  	}
 diff -urN u-boot-2012.04.01/drivers/mtd/jedec_flash.c u-boot-2012.04.01-jz2440/drivers/mtd/jedec_flash.c
 --- u-boot-2012.04.01/drivers/mtd/jedec_flash.c	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/drivers/mtd/jedec_flash.c	2020-02-26 11:07:15.759656367 +0800
++++ u-boot-2012.04.01-jz2440/drivers/mtd/jedec_flash.c	2020-03-04 08:12:08.078088394 +0800
 @@ -74,6 +74,8 @@
  
  /* MXIC */
@@ -534,7 +534,7 @@ diff -urN u-boot-2012.04.01/drivers/mtd/jedec_flash.c u-boot-2012.04.01-jz2440/d
  
 diff -urN u-boot-2012.04.01/drivers/mtd/nand/Makefile u-boot-2012.04.01-jz2440/drivers/mtd/nand/Makefile
 --- u-boot-2012.04.01/drivers/mtd/nand/Makefile	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/Makefile	2020-02-27 10:58:39.925984583 +0800
++++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/Makefile	2020-03-04 08:12:08.078088394 +0800
 @@ -59,6 +59,7 @@
  COBJS-$(CONFIG_NAND_NDFC) += ndfc.o
  COBJS-$(CONFIG_NAND_NOMADIK) += nomadik.o
@@ -545,7 +545,7 @@ diff -urN u-boot-2012.04.01/drivers/mtd/nand/Makefile u-boot-2012.04.01-jz2440/d
  COBJS-$(CONFIG_NAND_OMAP_GPMC) += omap_gpmc.o
 diff -urN u-boot-2012.04.01/drivers/mtd/nand/nand_util.c u-boot-2012.04.01-jz2440/drivers/mtd/nand/nand_util.c
 --- u-boot-2012.04.01/drivers/mtd/nand/nand_util.c	2012-04-25 21:22:50.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/nand_util.c	2020-03-01 10:32:50.859314072 +0800
++++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/nand_util.c	2020-03-04 08:12:08.082088458 +0800
 @@ -515,7 +515,7 @@
  		return -EINVAL;
  	}
@@ -577,7 +577,7 @@ diff -urN u-boot-2012.04.01/drivers/mtd/nand/nand_util.c u-boot-2012.04.01-jz244
  			}
 diff -urN u-boot-2012.04.01/drivers/mtd/nand/s3c2440_nand.c u-boot-2012.04.01-jz2440/drivers/mtd/nand/s3c2440_nand.c
 --- u-boot-2012.04.01/drivers/mtd/nand/s3c2440_nand.c	1970-01-01 08:00:00.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/s3c2440_nand.c	2020-03-01 08:04:33.742593678 +0800
++++ u-boot-2012.04.01-jz2440/drivers/mtd/nand/s3c2440_nand.c	2020-03-04 08:12:08.082088458 +0800
 @@ -0,0 +1,200 @@
 +/*
 + * (C) Copyright 2006 OpenMoko, Inc.
@@ -781,7 +781,7 @@ diff -urN u-boot-2012.04.01/drivers/mtd/nand/s3c2440_nand.c u-boot-2012.04.01-jz
 +}
 diff -urN u-boot-2012.04.01/include/configs/smdk2440.h u-boot-2012.04.01-jz2440/include/configs/smdk2440.h
 --- u-boot-2012.04.01/include/configs/smdk2440.h	1970-01-01 08:00:00.000000000 +0800
-+++ u-boot-2012.04.01-jz2440/include/configs/smdk2440.h	2020-03-01 09:07:40.654109745 +0800
++++ u-boot-2012.04.01-jz2440/include/configs/smdk2440.h	2020-03-04 08:12:08.082088458 +0800
 @@ -0,0 +1,266 @@
 +/*
 + * (C) Copyright 2002
